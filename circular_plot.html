@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        svg text{
+            fill:white;
+            text-anchor:end;
+        }
+    </style>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var height = 500;
+        var width = 500;
+
+        var data = [10, 15, 20, 25, 30]
+        var colors = ['#4daf4a','#C030FF','#593CFF','#2C42E8','#307FFF'];
+
+        var svg = d3.select('body')
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height)
+
+        var g = svg.selectAll("g")
+                    .data(data)
+                    .enter()
+                    .append("g")
+                    .attr("transform", function(d,i){
+                        return "transform(0,0)";
+                    })
+
+                g.append('circle')
+                    .attr('cx', function(d,i){
+                        return i*100 + 50
+                    })
+                    .attr('cy', function(d,i){
+                        return 100;
+                    })
+                    .attr('r', function(d,i){
+                        return d*1.5
+                    })
+                    .attr('fill', function(d,i){
+                        return colors[i]
+                    })
+
+            g.append('text')
+                    .attr('x', function(d,i){
+                        return i * 100 + 50
+                    })
+                    .attr('y', 105)
+                    .attr('stroke', 'gold')
+                    .attr('font-size', '12px')
+                    .attr('font-family','Verdana')
+                    .text(function(d){
+                        return d;
+                    });
+
+
+
+
+    </script>
+</body>
+</html>
